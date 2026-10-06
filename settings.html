@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Settings | NextGen Classroom Inventory</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <h2>Settings</h2>
+  <div><a class="btn ghost sm" href="dashboard.html">Back to dashboard</a> <button class="btn ghost sm" id="signout">Sign out</button></div>
+</header>
+
+<main class="narrow">
+  <form class="formcard" id="profileForm">
+    <h3>Profile</h3>
+    <label for="s-name">Full name</label>
+    <input id="s-name" autocomplete="name" required>
+    <label for="s-user">Username</label>
+    <input id="s-user" autocomplete="username" placeholder="e.g. juan_dc">
+    <p class="note">3 to 20 letters, numbers, dots or underscores. You can sign in with your username or your email.</p>
+    <label for="s-email">Email</label>
+    <input id="s-email" disabled>
+    <p class="err" id="p-msg" role="alert"></p>
+    <button class="btn" type="submit">Save profile</button>
+  </form>
+
+  <form class="formcard" id="passForm">
+    <h3>Change password</h3>
+    <label for="w-cur">Current password</label>
+    <input id="w-cur" type="password" autocomplete="current-password" required>
+    <label for="w-new">New password (6+ characters)</label>
+    <input id="w-new" type="password" autocomplete="new-password" minlength="6" required>
+    <label for="w-confirm">Confirm new password</label>
+    <input id="w-confirm" type="password" autocomplete="new-password" required>
+    <p class="err" id="w-msg" role="alert"></p>
+    <button class="btn" type="submit">Update password</button>
+  </form>
+</main>
+
+<script src="common.js"></script>
+<script src="settings.js"></script>
+</body>
+</html>

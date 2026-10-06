@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Sign up | NextGen Classroom Inventory</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<section class="auth">
+  <form class="panel" id="signupForm">
+    <h1>Create an account</h1>
+    <p>Set up access to the classroom inventory.</p>
+    <label for="su-name">Full name</label>
+    <input id="su-name" autocomplete="name" required>
+    <label for="su-email">Email</label>
+    <input id="su-email" type="email" autocomplete="email" required>
+    <label for="su-pass">Password (6+ characters)</label>
+    <input id="su-pass" type="password" autocomplete="new-password" minlength="6" required>
+    <label for="su-confirm">Confirm password</label>
+    <input id="su-confirm" type="password" autocomplete="new-password" required>
+    <p class="err" id="su-err" role="alert"></p>
+    <button class="btn" type="submit">Sign up</button>
+    <div class="switch">Already registered? <a href="signin.html">Sign in</a></div>
+  </form>
+</section>
+<script src="common.js"></script>
+<script src="signup.js"></script>
+</body>
+</html>

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Dashboard | NextGen Classroom Inventory</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+  <h2>Inventory</h2>
+  <div><span id="who"></span><a class="btn ghost sm" href="settings.html">Settings</a> <button class="btn ghost sm" id="signout">Sign out</button></div>
+</header>
+
+<main>
+  <div class="hero hidden" id="hero">
+    <h1>Items for borrowing</h1>
+    <p>Pick an item and send a borrow request. An admin will approve it, and you can return it here when you're done.</p>
+  </div>
+  <div class="tabs">
+    <button class="tab active" data-tab="classroom">NextGen Classroom</button>
+    <button class="tab" data-tab="hub">Mobile ICT Hub</button>
+    <button class="tab" data-tab="history">History</button>
+    <button class="tab hidden" data-tab="users" id="usersTab">Users</button>
+  </div>
+  <div id="inv">
+  <div class="alertbar hidden" id="alertBar"></div>
+  <div class="stats" id="stats"></div>
+  <div class="bar">
+    <input id="q" type="search" placeholder="Search items" aria-label="Search items">
+    <select id="filter" aria-label="Filter by category"></select>
+    <button class="btn ghost" id="addCat">Add category</button>
+    <button class="btn" id="add">Add item</button>
+  </div>
+  <div class="cards hidden" id="cards"></div>
+  <div class="tablewrap" id="tableWrap">
+    <table>
+      <thead><tr><th>Item</th><th>Category</th><th>Qty</th><th>Status</th><th></th></tr></thead>
+      <tbody id="rows"></tbody>
+    </table>
+    <div class="empty hidden" id="empty"></div>
+  </div>
+  </div>
+
+  <!-- Admin only: registered accounts (a tab, like the inventory tabs) -->
+  <div id="usersView" class="hidden">
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>Name</th><th>Email</th><th>Role</th><th></th></tr></thead>
+        <tbody id="userRows"></tbody>
+      </table>
+    </div>
+  </div>
+  <!-- History of borrowed items (admin sees everyone's, a borrower sees their own) -->
+  <div id="historyView" class="hidden">
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>Item</th><th id="thBorrower">Borrower</th><th>What</th><th>Requested</th><th>Approved</th><th>Returned</th><th>Status</th></tr></thead>
+        <tbody id="historyRows"></tbody>
+      </table>
+    </div>
+  </div>
+</main>
+
+<!-- Right-click menu for categories -->
+<div id="menu" class="hidden">
+  <button id="menuRename">Rename category</button>
+  <button id="menuDelete">Delete category</button>
+</div>
+
+<!-- Add / edit dialog -->
+<dialog id="dlg">
+  <form id="itemForm">
+    <h2 id="dlgTitle">Add item</h2>
+    <label for="f-name">Item name</label>
+    <input id="f-name" placeholder="e.g. Dell Latitude 3420" required>
+    <label for="f-cat">Category</label>
+    <select id="f-cat"></select>
+    <label class="check"><input type="checkbox" id="f-qtyon" checked> Quantity applies to this item</label>
+    <div class="row">
+      <div><label for="f-qty">Quantity</label><input id="f-qty" type="number" min="0" value="1" required></div>
+      <div><label for="f-status">Status</label>
+        <select id="f-status"><option>Available</option><option>In use</option><option>Needs repair</option><option>Partly borrowed</option><option>Borrowed</option></select></div>
+    </div>
+    <label for="f-notes">Notes (optional)</label>
+    <textarea id="f-notes" rows="2" placeholder="Serial number, shelf, who has it…"></textarea>
+    <label for="f-parts">Parts inside this item (optional)</label>
+    <textarea id="f-parts" rows="3" placeholder="One per line, for example:&#10;Motor: 4&#10;Color sensor: 2&#10;Hub: 1"></textarea>
+    <p class="note">If you list parts, borrowers can borrow only some of them.</p>
+    <div class="actions">
+      <button type="button" class="btn ghost" id="cancel">Cancel</button>
+      <button type="submit" class="btn">Save item</button>
+    </div>
+  </form>
+</dialog>
+
+<!-- Borrower: choose what to borrow -->
+<dialog id="borrowDlg">
+  <form id="borrowForm">
+    <h2 id="borrowTitle">Borrow item</h2>
+    <p class="note" id="borrowHint"></p>
+    <div id="borrowAll"></div>
+    <div id="borrowFields"></div>
+    <label for="b-note">Note for the admin (optional)</label>
+    <textarea id="b-note" rows="2" placeholder="e.g. Needed for Thursday's robotics class"></textarea>
+    <p class="err" id="b-err" role="alert"></p>
+    <div class="actions">
+      <button type="button" class="btn ghost" id="bCancel">Cancel</button>
+      <button type="submit" class="btn">Send request</button>
+    </div>
+  </form>
+</dialog>
+
+<script src="common.js"></script>
+<script src="dashboard.js"></script>
+</body>
+</html>
